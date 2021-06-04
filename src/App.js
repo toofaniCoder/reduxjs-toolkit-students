@@ -1,5 +1,5 @@
 import { Container, CssBaseline } from "@material-ui/core";
-import { ThemeProvider, makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import theme from "./theme";
