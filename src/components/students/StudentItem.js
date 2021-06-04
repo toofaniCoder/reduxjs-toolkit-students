@@ -10,29 +10,32 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { deleteStudent } from "../../redux/features/studentSlice";
+import { useDispatch } from "react-redux";
 
-const StudentItem = (props) => {
+const StudentItem = ({ student }) => {
+  const { id, firstName, lastName, email, phone, address } = student;
+  const dispatch = useDispatch();
   const handleDelete = () => {
-    // delete item code
-    console.log("item deleted!");
+    dispatch(deleteStudent(id));
   };
   return (
     <Grid sm={3} item>
       <Paper>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography variant="subtitle2" gutterBottom>
-            Subroto Biswas
+            {firstName} {lastName}
           </Typography>
-          <IconButton component={Link} to="/students/100">
+          <IconButton component={Link} to={`/students/${id}`}>
             <VisibilityIcon />
           </IconButton>
         </Box>
-        <Typography variant="caption">+91 111 1111 111</Typography>
-        <Typography variant="caption">toofanicoder@example.com</Typography>
-        <Typography variant="caption">Ranchi,Jharkhand</Typography>
+        <Typography variant="caption">{phone}</Typography>
+        <Typography variant="caption">{email}</Typography>
+        <Typography variant="caption">{address}</Typography>
         <Button
           component={Link}
-          to="/students/100/edit"
+          to={`/students/${id}/edit`}
           variant="outlined"
           startIcon={<EditIcon />}
         >

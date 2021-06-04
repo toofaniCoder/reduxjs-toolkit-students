@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+## dummy data
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```json
+[
+  {
+    "id": 1,
+    "firstName": "Himadri",
+    "lastName": "Bhattathiri",
+    "email": "Chandramani_Talwar73@hotmail.com",
+    "phone": "+91620-320-4125",
+    "address": "474 Banerjee Fords"
+  },
+  {
+    "id": 2,
+    "firstName": "Subhasini",
+    "lastName": "Bhattacharya",
+    "email": "Chetan17@yahoo.co.in",
+    "phone": "+91953-928-4930",
+    "address": "52520 Bhisham Brooks"
+  },
+  {
+    "id": 3,
+    "firstName": "Daevika",
+    "lastName": "Ganaka",
+    "email": "Bharat89@gmail.com",
+    "phone": "+91-917-1416065",
+    "address": "78079 Patel Park"
+  },
+  {
+    "id": 4,
+    "firstName": "Tanya",
+    "lastName": "Trivedi",
+    "email": "Birjesh_Sinha3@hotmail.com",
+    "phone": "+91-644-6939697",
+    "address": "57761 Shreyashi Junctions"
+  },
+  {
+    "id": 5,
+    "firstName": "Vimala",
+    "lastName": "Mehrotra",
+    "email": "Anamika.Ahluwalia1@hotmail.com",
+    "phone": "+91-704-4124157",
+    "address": "860 Gautama Turnpike"
+  },
+  {
+    "id": 6,
+    "firstName": "Chapala",
+    "lastName": "Tagore",
+    "email": "Rohan17@gmail.com",
+    "phone": "+91947-960-7538",
+    "address": "300 Chandrabhaga Knoll"
+  },
+  {
+    "id": 7,
+    "firstName": "Rajendra",
+    "lastName": "Ahuja",
+    "email": "Vasudeva_Tagore25@yahoo.co.in",
+    "phone": "+91-918-7520232",
+    "address": "4560 Dubashi Branch"
+  },
+  {
+    "id": 8,
+    "firstName": "Himadri",
+    "lastName": "Devar",
+    "email": "Amritambu_Talwar@hotmail.com",
+    "phone": "+919330236755",
+    "address": "1003 Girindra Rapids"
+  },
+  {
+    "id": 9,
+    "firstName": "Chandrakala",
+    "lastName": "Gowda",
+    "email": "Rajan51@gmail.com",
+    "phone": "+91-732-9504322",
+    "address": "967 Dhawan Burgs"
+  },
+  {
+    "id": 10,
+    "firstName": "Birjesh",
+    "lastName": "Embranthiri",
+    "email": "Bela.Sinha@yahoo.co.in",
+    "phone": "+91-834-5715321",
+    "address": "77860 Acharya Summit"
+  },
+  {
+    "id": 11,
+    "firstName": "Ghanaanand",
+    "lastName": "Tandon",
+    "email": "Deeksha.Varma12@hotmail.com",
+    "phone": "+91-709-3361753",
+    "address": "542 Ghanashyam Centers"
+  },
+  {
+    "id": 12,
+    "firstName": "Baalagopaal",
+    "lastName": "Verma",
+    "email": "Chandranath.Panicker@hotmail.com",
+    "phone": "+919432924857",
+    "address": "12208 Dwivedi Station"
+  }
+]
+```

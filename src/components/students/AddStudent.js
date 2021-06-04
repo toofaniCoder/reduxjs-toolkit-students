@@ -1,10 +1,17 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addStudent } from "../../redux/features/studentSlice";
+import { useHistory } from "react-router-dom";
 
 const AddStudent = () => {
-  const { handleSubmit, control, reset } = useForm({
+  const dispatch = useDispatch();
+  let history = useHistory();
+  const { handleSubmit, control, reset, register } = useForm({
     defaultValues: {
+      id: uuidv4(),
       firstName: "",
       lastName: "",
       email: "",
@@ -13,7 +20,7 @@ const AddStudent = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(addStudent(data));
     reset({
       firstName: "",
       lastName: "",
@@ -21,11 +28,18 @@ const AddStudent = () => {
       address: "",
       phone: "",
     });
+    history.push("/");
   };
   return (
     <div>
       <Paper>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            inputProps={{ type: "hidden" }}
+            margin="normal"
+            {...register("id")}
+          />
+
           <Controller
             control={control}
             name="firstName"

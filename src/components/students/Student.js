@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Box,
   Button,
@@ -6,21 +7,34 @@ import {
   Typography,
   IconButton,
 } from "@material-ui/core";
+import { getStudent, clearStudent } from "../../redux/features/studentSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 const Student = () => {
+  const params = useParams();
+  const dispatch = useDispatch();
+
+  const student = useSelector((state) => state.student.student);
+  useEffect(() => {
+    dispatch(getStudent(params.id));
+    return () => {
+      dispatch(clearStudent());
+    };
+  }, []);
   return (
     <Paper>
       <Typography variant="h2" gutterBottom>
-        Subroto Biswas
+        {student.firstName} {student.lastName}
       </Typography>
 
       <Typography variant="h5" gutterBottom>
-        +91 111 1111 111
+        {student.phone}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        toofanicoder@example.com
+        {student.email}
       </Typography>
       <Typography variant="h5" gutterBottom>
-        Ranchi,Jharkhand
+        {student.address}
       </Typography>
     </Paper>
   );
