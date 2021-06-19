@@ -2,12 +2,19 @@ import React, { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
+import {
+  clearStudent,
+  findStudent,
+  updateStudent,
+} from "../../actions/studentAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const EditStudent = ({ match }) => {
   let history = useHistory();
-  console.log(match.params.id);
+  const dispatch = useDispatch();
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
+      id: "",
       firstName: "",
       lastName: "",
       email: "",
@@ -15,19 +22,23 @@ const EditStudent = ({ match }) => {
       phone: "",
     },
   });
+  const student = useSelector((state) => state.student.student);
+  useEffect(() => {
+    dispatch(findStudent(match.params.id));
+    return () => {
+      dispatch(clearStudent());
+    };
+  }, [match]);
 
   useEffect(() => {
-    reset({
-      firstName: "subroto",
-      lastName: "biswas",
-      email: "subroto@example.com",
-      address: "Ranchi, Jharkhand",
-      phone: "111-2222-111",
-    });
-  }, []);
+    console.log(student);
+    reset(student);
+  }, [student]);
+
   const onSubmit = (data) => {
     console.log(data);
     // dispatch your action for update student
+    dispatch(updateStudent(data));
     history.push("/");
   };
   return (
