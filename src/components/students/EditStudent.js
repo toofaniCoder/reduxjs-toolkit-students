@@ -29,7 +29,9 @@ const EditStudent = () => {
   }, [student]);
 
   const onSubmit = (data) => {
-    dispatch(updateStudent(data));
+    const { id, ...rest } = data;
+    const updateData = { id, changes: rest };
+    dispatch(updateStudent(updateData));
     history.push("/");
   };
   return (

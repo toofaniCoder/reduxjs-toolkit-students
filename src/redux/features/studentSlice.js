@@ -9,17 +9,9 @@ export const studentSlice = createSlice({
   name: "student",
   initialState: studentAdapter.getInitialState(),
   reducers: {
-    addStudent: (state, action) => {
-      studentAdapter.addOne(state, action.payload);
-    },
-    updateStudent: (state, action) => {
-      const { id, ...rest } = action.payload;
-      console.log(id, rest);
-      studentAdapter.updateOne(state, { id, changes: rest });
-    },
-    deleteStudent: (state, action) => {
-      studentAdapter.removeOne(state, action.payload);
-    },
+    addStudent: studentAdapter.addOne,
+    updateStudent: studentAdapter.updateOne,
+    deleteStudent: studentAdapter.removeOne,
   },
 });
 
