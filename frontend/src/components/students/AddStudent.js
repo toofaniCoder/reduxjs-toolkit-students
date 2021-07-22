@@ -3,11 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { createNewStudent } from "../../actions/studentAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../layout/Loader";
 
 const AddStudent = () => {
   let history = useHistory();
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.student.loading);
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       firstName: "",
@@ -17,8 +19,8 @@ const AddStudent = () => {
       phone: "",
     },
   });
-  const onSubmit = (data) => {
-    dispatch(createNewStudent(data));
+  const onSubmit = async (data) => {
+    await dispatch(createNewStudent(data));
     reset({
       firstName: "",
       lastName: "",
@@ -30,6 +32,7 @@ const AddStudent = () => {
   };
   return (
     <div>
+      {loading && <Loader />}
       <Paper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller

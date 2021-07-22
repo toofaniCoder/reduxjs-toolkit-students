@@ -1,5 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
+export const clearStudent = createAction("student/clear");
 
 export const fetchAllStudents = createAsyncThunk(
   "students/fetchAllStudents",

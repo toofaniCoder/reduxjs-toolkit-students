@@ -3,10 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import {
+  clearStudent,
   fetchStudentById,
   updateStudentById,
 } from "../../actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
+import Loader from "../layout/Loader";
 
 const EditStudent = ({ match }) => {
   let history = useHistory();
@@ -21,23 +23,34 @@ const EditStudent = ({ match }) => {
       phone: "",
     },
   });
-  const student = useSelector((state) => state.student.student);
+  const { student, loading } = useSelector((state) => state.student);
   useEffect(() => {
     dispatch(fetchStudentById(match.params.id));
+    return () => {
+      dispatch(clearStudent());
+    };
   }, [dispatch, match]);
 
   useEffect(() => {
     reset(student);
   }, [reset, student]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
     // dispatch your action for update student
-    dispatch(updateStudentById(data));
+    await dispatch(updateStudentById(data));
+    reset({
+      firstName: "",
+      lastName: "",
+      email: "",
+      address: "",
+      phone: "",
+    });
     history.push("/");
   };
   return (
     <div>
+      {loading && <Loader />}
       <Paper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
