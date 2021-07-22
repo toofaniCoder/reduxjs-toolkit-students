@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllStudents } from "../../actions/studentAction";
 import Loader from "../layout/Loader";
+import ErrorBox from "../layout/ErrorBox";
 const useStyles = makeStyles((theme) => ({
   fab: {
     position: "fixed",
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const Students = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { students, loading } = useSelector((state) => state.student);
+  const { students, loading, error } = useSelector((state) => state.student);
 
   useEffect(() => {
     dispatch(fetchAllStudents());
@@ -27,6 +28,8 @@ const Students = () => {
     <>
       {loading ? (
         <Loader />
+      ) : error ? (
+        <ErrorBox message={error.message} />
       ) : (
         <>
           <Grid spacing={2} container>

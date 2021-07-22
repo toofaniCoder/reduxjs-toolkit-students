@@ -6,11 +6,15 @@ export const clearStudent = createAction("student/clear");
 export const fetchAllStudents = createAsyncThunk(
   "students/fetchAllStudents",
   async (student, thunkApi) => {
-    if (thunkApi.getState().student.students.length > 0) {
-      return thunkApi.getState().student.students;
+    try {
+      if (thunkApi.getState().student.students.length > 0) {
+        return thunkApi.getState().student.students;
+      }
+      const { data } = await axios.get("/students");
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.response.data);
     }
-    const { data } = await axios.get("/students");
-    return data;
   }
 );
 
@@ -24,9 +28,13 @@ export const createNewStudent = createAsyncThunk(
 
 export const fetchStudentById = createAsyncThunk(
   "students/fetchStudentById",
-  async (studentId) => {
-    const { data } = await axios.get(`/students/${studentId}`);
-    return data;
+  async (studentId, thunkApi) => {
+    try {
+      const { data } = await axios.get(`/students/${studentId}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.response.data);
+    }
   }
 );
 

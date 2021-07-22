@@ -18,6 +18,7 @@ const initialState = {
     phone: "",
   },
   loading: false,
+  error: null,
 };
 
 const studentReducer = createReducer(initialState, (builder) => {
@@ -27,6 +28,10 @@ const studentReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchAllStudents.fulfilled, (state, action) => {
       state.students = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchAllStudents.rejected, (state, action) => {
+      state.error = action.payload;
       state.loading = false;
     })
     .addCase(clearStudent, (state) => {
@@ -50,6 +55,10 @@ const studentReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchStudentById.fulfilled, (state, action) => {
       state.student = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchStudentById.rejected, (state, action) => {
+      state.error = action.payload;
       state.loading = false;
     })
     .addCase(updateStudentById.pending, (state) => {
