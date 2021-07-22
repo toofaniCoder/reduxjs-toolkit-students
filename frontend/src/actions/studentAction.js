@@ -50,8 +50,13 @@ export const updateStudentById = createAsyncThunk(
 
 export const deleteStudentById = createAsyncThunk(
   "students/deleteStudentById",
-  async (studentId) => {
-    await axios.delete(`/students/${studentId}`);
-    return studentId;
+  async (studentId, thunkApi) => {
+    try {
+      await axios.delete(`/students/${studentId}`);
+      return studentId;
+    } catch (error) {
+      console.log(error.response);
+      return thunkApi.rejectWithValue(error.response.data);
+    }
   }
 );

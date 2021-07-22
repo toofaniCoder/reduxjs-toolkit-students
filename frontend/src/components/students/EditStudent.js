@@ -8,11 +8,13 @@ import {
   updateStudentById,
 } from "../../actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 import Loader from "../layout/Loader";
 
 const EditStudent = ({ match }) => {
   let history = useHistory();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       id: "",
@@ -47,6 +49,7 @@ const EditStudent = ({ match }) => {
       phone: "",
     });
     history.push("/");
+    enqueueSnackbar("Student Successfully Updated", { variant: "warning" });
   };
   return (
     <div>

@@ -12,12 +12,20 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteStudentById } from "../../actions/studentAction";
+import { useSnackbar } from "notistack";
 
 const StudentItem = ({ student }) => {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { _id, firstName, lastName, email, address, phone } = student;
-  const handleDelete = () => {
-    dispatch(deleteStudentById(_id));
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteStudentById(_id)).unwrap();
+      enqueueSnackbar("Student Successfully Removed", { variant: "success" });
+    } catch (error) {
+      console.log(error.message);
+      enqueueSnackbar(error.message, { variant: "error" });
+    }
   };
   return (
     <Grid xs={12} sm={6} lg={3} md={4} item>

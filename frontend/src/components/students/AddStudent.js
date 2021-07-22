@@ -4,11 +4,13 @@ import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { createNewStudent } from "../../actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from "notistack";
 import Loader from "../layout/Loader";
 
 const AddStudent = () => {
   let history = useHistory();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const loading = useSelector((state) => state.student.loading);
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
@@ -29,6 +31,7 @@ const AddStudent = () => {
       phone: "",
     });
     history.push("/");
+    enqueueSnackbar("New Student Successfully Created", { variant: "success" });
   };
   return (
     <div>

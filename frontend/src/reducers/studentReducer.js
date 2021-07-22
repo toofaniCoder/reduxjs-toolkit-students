@@ -78,6 +78,9 @@ const studentReducer = createReducer(initialState, (builder) => {
         (student) => student._id != action.payload
       );
       state.loading = false;
+    })
+    .addCase(deleteStudentById.rejected, (state) => {
+      state.loading = false;
     });
 });
 
