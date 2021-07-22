@@ -2,16 +2,14 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { createStudent } from "../../actions/studentAction";
+import { createNewStudent } from "../../actions/studentAction";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 const AddStudent = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
-      id: uuidv4(),
       firstName: "",
       lastName: "",
       email: "",
@@ -20,7 +18,7 @@ const AddStudent = () => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(createNewStudent(data));
     reset({
       firstName: "",
       lastName: "",
@@ -28,7 +26,6 @@ const AddStudent = () => {
       address: "",
       phone: "",
     });
-    dispatch(createStudent(data));
     history.push("/");
   };
   return (

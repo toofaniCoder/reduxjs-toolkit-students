@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Fab, makeStyles } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import StudentItem from "./StudentItem";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchAllStudents } from "../../actions/studentAction";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -15,12 +16,18 @@ const useStyles = makeStyles((theme) => ({
 
 const Students = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const students = useSelector((state) => state.student.students);
+
+  useEffect(() => {
+    dispatch(fetchAllStudents());
+  }, [dispatch]);
+
   return (
     <>
       <Grid spacing={2} container>
         {students.map((student) => (
-          <StudentItem key={student.id} student={student} />
+          <StudentItem key={student._id} student={student} />
         ))}
       </Grid>
       <Fab

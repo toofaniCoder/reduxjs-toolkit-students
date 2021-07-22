@@ -3,9 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import { TextField, Paper, Button } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import {
-  clearStudent,
-  findStudent,
-  updateStudent,
+  fetchStudentById,
+  updateStudentById,
 } from "../../actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,21 +23,17 @@ const EditStudent = ({ match }) => {
   });
   const student = useSelector((state) => state.student.student);
   useEffect(() => {
-    dispatch(findStudent(match.params.id));
-    return () => {
-      dispatch(clearStudent());
-    };
+    dispatch(fetchStudentById(match.params.id));
   }, [dispatch, match]);
 
   useEffect(() => {
-    console.log(student);
     reset(student);
   }, [reset, student]);
 
   const onSubmit = (data) => {
     console.log(data);
     // dispatch your action for update student
-    dispatch(updateStudent(data));
+    dispatch(updateStudentById(data));
     history.push("/");
   };
   return (

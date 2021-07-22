@@ -1,17 +1,13 @@
 import { Paper, Typography } from "@material-ui/core";
-import { findStudent, clearStudent } from "../../actions/studentAction";
+import { fetchStudentById } from "../../actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const Student = ({ match }) => {
   const dispatch = useDispatch();
-  // student id
-  console.log(match.params.id);
+
   useEffect(() => {
-    dispatch(findStudent(match.params.id));
-    return () => {
-      dispatch(clearStudent());
-    };
+    dispatch(fetchStudentById(match.params.id));
   }, [dispatch, match]);
 
   const student = useSelector((state) => state.student.student);

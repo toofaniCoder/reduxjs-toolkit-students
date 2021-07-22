@@ -11,13 +11,13 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { removeStudent } from "../../actions/studentAction";
+import { deleteStudentById } from "../../actions/studentAction";
 
 const StudentItem = ({ student }) => {
   const dispatch = useDispatch();
-  const { id, firstName, lastName, email, address, phone } = student;
+  const { _id, firstName, lastName, email, address, phone } = student;
   const handleDelete = () => {
-    dispatch(removeStudent(id));
+    dispatch(deleteStudentById(_id));
   };
   return (
     <Grid xs={12} sm={6} lg={3} md={4} item>
@@ -26,7 +26,7 @@ const StudentItem = ({ student }) => {
           <Typography variant="subtitle2" gutterBottom>
             {firstName} {lastName}
           </Typography>
-          <IconButton component={Link} to={`/students/${id}`}>
+          <IconButton component={Link} to={`/students/${_id}`}>
             <VisibilityIcon />
           </IconButton>
         </Box>
@@ -35,7 +35,7 @@ const StudentItem = ({ student }) => {
         <Typography variant="caption">{address}</Typography>
         <Button
           component={Link}
-          to={`/students/${id}/edit`}
+          to={`/students/${_id}/edit`}
           variant="outlined"
           startIcon={<EditIcon />}
         >
