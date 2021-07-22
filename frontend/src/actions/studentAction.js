@@ -3,7 +3,10 @@ import axios from "axios";
 
 export const fetchAllStudents = createAsyncThunk(
   "students/fetchAllStudents",
-  async () => {
+  async (student, thunkApi) => {
+    if (thunkApi.getState().student.students.length > 0) {
+      return thunkApi.getState().student.students;
+    }
     const { data } = await axios.get("/students");
     return data;
   }
